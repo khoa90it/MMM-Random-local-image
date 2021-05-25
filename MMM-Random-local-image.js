@@ -7,14 +7,14 @@
 Module.register("MMM-Random-local-image", {
   defaults: {
     photoDir: "./modules/MMM-Random-local-image/photos/",
-    photoUpdateInterval: 30 * 1000,
+    photoUpdateInterval: 2 * 1000,
     photoLoadInitialDelay: 1000,
     photoLoadUpdateInterval: 12 * 60 * 60 * 1000,
     randomOrder: true,
     selectFromSubdirectories: false,
     ignoreDirRegex: "a^", // default matching nothing
     opacity: 1.0,
-    showAdditionalInformation: true,
+    showAdditionalInformation: false,
     maxWidth: "100%",
     maxHeight: "100%",
   },
@@ -77,8 +77,6 @@ Module.register("MMM-Random-local-image", {
   createImageElement: function (image) {
     var element = document.createElement("img");
     element.src = image.fullPath;
-    element.style.maxWidth = this.config.maxWidth;
-    element.style.maxHeight = this.config.maxHeight;
     element.style.opacity = this.config.opacity;
     return element;
   },
@@ -132,6 +130,12 @@ Module.register("MMM-Random-local-image", {
 
     setInterval(() => this.loadImages(), this.config.photoLoadUpdateInterval);
   },
+
+  getStyles: function() {
+    return [
+        "MMM-Random-local-image.css",
+    ];
+  },    
 
   nextImageIndex: function () {
     this.imageIndex = this.config.randomOrder

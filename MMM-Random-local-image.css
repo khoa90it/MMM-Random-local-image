@@ -1,0 +1,14 @@
+:root {
+    --randomphoto-blur-value: 0px;
+}
+
+#randomPhoto img {
+    opacity: 0;
+    position: absolute;;
+    top: 0px;
+    left: 0px;
+    right: 100px;
+    bottom: 200px;
+    object-fit: cover;
+}
+
